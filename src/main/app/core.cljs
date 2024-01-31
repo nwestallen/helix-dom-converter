@@ -2,7 +2,8 @@
   (:require [helix.core :refer [defnc $]]
             [helix.hooks :as hooks]
             [helix.dom :as d]
-            ["react-dom/client" :as rdom]))
+            ["react-dom/client" :as rdom]
+            [app.html :as html]))
 
 ;; define components using the `defnc` macro
 (defnc greeting
@@ -20,7 +21,12 @@
      ($ greeting {:name (:name state)})
      (d/input {:class-name "mx-5 my-1 border border-black"
                :value (:name state)
-               :on-change #(set-state assoc :name (.. % -target -value))}))))
+               :on-change #(set-state assoc :name (.. % -target -value))})
+      (d/p (str (html/hick:html->dom "<div class=\"foo\">
+   <button class=\"asdf\" aria-role=\"jkl\">qwfp</button>
+   <input value=\"1\">
+   <span><a href=\"/bar\">Baz</a></span>
+ </div>" ))))))
 
 ;; start your app with your favorite React renderer
 (defn ^:export init []

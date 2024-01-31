@@ -5,7 +5,9 @@
   "src/test"]
 
  :dependencies
- [[lilactown/helix "0.2.0"] [com.teknql/shadow-cljs-tailwind-jit "1.0.0"]]
+ [[lilactown/helix "0.2.0"]
+  [com.teknql/shadow-cljs-tailwind-jit "1.0.0"]
+  [org.clj-commons/hickory "0.7.4"]]
 
  :builds
  {:app {:target :browser
