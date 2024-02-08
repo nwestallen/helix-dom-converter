@@ -5,20 +5,25 @@
             ["react-dom/client" :as rdom]
             [app.html :as html]))
 
-(def input-format "border border-black p-2 w-full h-5/6 resize-none")
+(def input-format "border border-black p-2 w-full h-[96%] resize-none rounded-md")
+(def default-input "<div class=\"foo\">
+  <button class=\"asdf\" aria-role=\"jkl\">qwfp</button>
+  <input value=\"1\">
+  <span><a href=\"/bar\">Baz</a></span>
+  </div>")
 
 (defnc app []
   {:helix/features {:fast-refresh true}}
-  (let [[rawinput set-rawinput] (hooks/use-state "")]
-    (d/div
-     (d/h1 {:class-name "text-4xl font-bold m-4"} "HTML to Helix-Dom")
-     (d/div {:class-name "flex w-5/6 border border-black h-[75vh] m-4"}
-            (d/div {:class-name "p-2 w-1/2"}
+  (let [[rawinput set-rawinput] (hooks/use-state default-input)]
+    (d/div {:class-name "bg-stone-300 h-screen"}
+     (d/h1 {:class-name "text-4xl text-slate-50 font-bold p-7 bg-stone-700 drop-shadow-lg"} "HTML to Helix-Dom")
+     (d/div {:class-name "flex w-5/6 h-[75vh] m-4"}
+            (d/div {:class-name "p-2 w-1/2 bg-blue-400 m-2 rounded-md drop-shadow-xl"}
              (d/h2 {:class-name "font-bold"}"HTML")
              (d/textarea {:class-name input-format
                           :value rawinput
                           :on-change #(set-rawinput (.. % -target -value))}))
-            (d/div {:class-name "p-2 w-1/2"}
+            (d/div {:class-name "p-2 w-1/2 bg-teal-400 m-2 rounded-md drop-shadow-xl"}
              (d/h2 {:class-name "font-bold"} "Helix-Dom")
              (d/textarea {:class-name input-format
                           :value (str (html/hick:html->dom rawinput))}))))))
