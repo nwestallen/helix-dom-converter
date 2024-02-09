@@ -4,7 +4,7 @@
             [clojure.walk :as walk]))
 
 (defn hick:html->dom
-  [html-string]
+  [html-string & {:keys [alias] :or {alias "dom"}}]
   (let [expr (->> html-string
                   (string/split-lines) ; get rid of newlines
                   (map string/trim) ; trim whitespace
@@ -15,7 +15,7 @@
                    (fn [x]
                      (if (and (map? x) (:type x))
                        ;; you can change the "dom" here to be any ns/alias
-                       `(~(symbol "dom" (name (:tag x)))
+                       `(~(symbol alias (name (:tag x)))
                          ~@(when (seq (:attrs x)) [(:attrs x)])
                          ~@(:content x))
                        x))))]
