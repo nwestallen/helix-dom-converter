@@ -3,8 +3,7 @@
             [helix.hooks :as hooks]
             [helix.dom :as d]
             ["react-dom/client" :as rdom]
-            [app.html :as html]
-            ["highlight.js" :as hl]))
+            [app.html :as html]))
 
 (def input-format "border border-black p-2 w-full h-[96%] resize-none rounded-md")
 (def default-input "<div class=\"foo\">
