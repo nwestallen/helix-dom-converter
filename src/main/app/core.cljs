@@ -5,6 +5,8 @@
             ["react-dom/client" :as rdom]
             [app.html :as html]
             ["@uiw/react-codemirror" :default CodeMirror]
+            ["@codemirror/lang-html" :refer (html)]
+            ["@nextjournal/lang-clojure" :refer (clojure)]
             ))
 
 (def input-format "border border-black p-2 w-full h-[96%] resize-none rounded-md")
@@ -27,11 +29,13 @@
              (d/h2 {:class-name "font-bold text-xl"}"HTML")
              ($ CodeMirror {:class-name input-format
                           :value rawinput
+                          :extensions (html)
                           :on-change #(set-rawinput (.. % -target -value))}))
             (d/div {:class-name "p-2 w-1/2 bg-teal-400 m-2 rounded-md drop-shadow-xl"}
              (d/h2 {:class-name "font-bold text-xl"} "Helix-Dom")
-             (d/textarea {:class-name input-format
-                          :value (str (html/hick:html->dom rawinput :alias domalias))}))))))
+             ($ CodeMirror {:class-name input-format
+                          :value (str (html/hick:html->dom rawinput :alias domalias))
+                          :extensions (clojure)}))))))
 
 ;;TODO format output text; newline & indent nested tags/components/parentheses
 ;;TODO modify html/hick:html->dom to handle html comments
