@@ -23,6 +23,12 @@
    )
   )
 
+(defn reclass [s]
+  (s/replace s #"class" "class-name"))
+
+(def transform (comp autowrap reclass))
+
+(comment (transform "(div class=frog (p dude))"))
 (defnc app []
   {:helix/features {:fast-refresh true}}
   (let [[rawinput set-rawinput] (hooks/use-state default-input)
@@ -41,11 +47,10 @@
             (d/div {:class-name "p-2 w-1/2 bg-teal-400 m-2 rounded-md drop-shadow-xl h-fit"}
              (d/h2 {:class-name "font-bold text-xl"} "Helix-Dom")
              ($ CodeMirror {
-                          :value (autowrap (str (html/hick:html->dom rawinput :alias domalias)))
+                          :value (transform (str (html/hick:html->dom rawinput :alias domalias)))
                           :extensions (clojure)}))))))
 
 ;;TODO modify html/hick:html->dom to handle html comments
-;;TODO map keywords that are different from html e.g. "class" -> ":class-name"
 ;;TODO general-error handling, edge cases
 
 (defn ^:export init []
