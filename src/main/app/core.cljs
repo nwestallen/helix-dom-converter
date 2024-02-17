@@ -32,13 +32,13 @@
      (d/p {:class-name "mx-6 mt-2 font-bold"}"helix.dom alias")
      (d/input {:id "alias-input":class-name "mx-6" :value domalias :on-change #(set-domalias (.. % -target -value))})
      (d/div {:class-name "flex w-5/6 m-4"}
-            (d/div {:class-name "p-2 w-1/2 bg-blue-400 m-2 rounded-md drop-shadow-xl"}
+            (d/div {:class-name "p-2 w-1/2 bg-blue-400 m-2 rounded-md drop-shadow-xl h-fit"}
              (d/h2 {:class-name "font-bold text-xl"}"HTML")
              ($ CodeMirror {
                           :value rawinput
                           :extensions (html)
-                          :onChange (fn [val] ((set-rawinput val)))}))
-            (d/div {:class-name "p-2 w-1/2 bg-teal-400 m-2 rounded-md drop-shadow-xl"}
+                          :onChange #(set-rawinput %)}))
+            (d/div {:class-name "p-2 w-1/2 bg-teal-400 m-2 rounded-md drop-shadow-xl h-fit"}
              (d/h2 {:class-name "font-bold text-xl"} "Helix-Dom")
              ($ CodeMirror {
                           :value (autowrap (str (html/hick:html->dom rawinput :alias domalias)))
