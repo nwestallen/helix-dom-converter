@@ -11,11 +11,12 @@
 
  :builds
  {:app {:target :browser
+        :output-dir "docs/js"
         :modules {:main {:init-fn app.core/init}}
         :devtools {:reload-strategy :full
                    :preloads [app.dev]
-                   :http-root "public"
+                   :http-root "docs"
                    :http-port 8080}
         :build-hooks
          [(teknql.tailwind/start-watch!)]
-        :tailwind/output "public/css/output.css"}}}
+        :tailwind/output "docs/css/output.css"}}}
