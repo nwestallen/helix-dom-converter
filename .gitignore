@@ -1,6 +1,5 @@
 node_modules/
-docs/js
-docs/css
+docs/js/cljs-runtime
 
 /target
 /checkouts
