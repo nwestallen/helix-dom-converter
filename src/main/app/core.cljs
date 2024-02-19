@@ -36,10 +36,11 @@
                   (d/div {:class-name "m-4"}
                          (d/img {:src "Clojure_logo.svg"
                                  :class-name "object-contain w-[100%] h-[100%]"}))
-                  (d/div {:class-name "flex items-center w-full"}
+                  (d/div {:class-name "flex flex-col text-slate-50 justify-center w-full"}
                          (d/h1
-                           {:class-name "text-4xl text-slate-50 font-bold drop-shadow-lg w-1/2"}
-                           "HTML to helix.dom")))
+                           {:class-name "text-4xl font-bold drop-shadow-lg w-1/2"}
+                           "HTML to helix.dom")
+                    (d/p "Convert html to helix's dom syntax for use in your cljs projects")))
            (d/p {:class-name "mx-6 mt-2 font-bold"} "helix.dom alias")
            (d/input {:id "alias-input"
                      :class-name "mx-6"
@@ -62,7 +63,13 @@
                                            :on-click #(js/navigator.clipboard.writeText output)}
                                   "copy"))
                          ($ CodeMirror {:value output
-                                        :extensions (clojure)}))))))
+                                        :extensions (clojure)})))
+      (d/footer {:class-name "w-full fixed bottom-0 flex justify-center p-2 bg-stone-300"}
+        (d/div {:class-name "flex justify-center border-t border-stone-700 w-11/12"}
+          (d/img {:src "github-mark.svg" :class-name "object-contain w-5"})
+          (d/a {:href "https://github.com/nwestallen/helix-dom-converter"
+                :class-name "m-2 text-stone-700 underline"}
+            "helix-dom-converter"))))))
 
 ;;TODO general-error handling, edge cases
 ;;TODO onlick -> on-click
