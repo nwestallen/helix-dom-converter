@@ -15,7 +15,7 @@
                    (fn [x]
                      (if (and (map? x) (:type x))
                        ;; you can change the "dom" here to be any ns/alias
-                       `(~(symbol alias (name (:tag x)))
+                       `(~(if (:tag x) (symbol alias (name (:tag x))) (symbol "comment"))
                          ~@(when (seq (:attrs x)) [(:attrs x)])
                          ~@(:content x))
                        x))))]
