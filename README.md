@@ -1,4 +1,6 @@
 # HTML to helix.dom
+Current page: https://nwestallen.github.io/helix-dom-converter/
+
 Inspired by [similar pages](https://html2hiccup.dev/) that convert html to hiccup, this converts html to [helix's](https://github.com/lilactown/helix) dom syntax. 
 I copied and modified code from this [gist](https://gist.github.com/lilactown/8e42650bcc1b45736bc52f9fdfe82dfe) by [lilactown](https://github.com/lilactown) that does the heavy lifiting and added a simple helix/react-based ui
 
